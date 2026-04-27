@@ -50,6 +50,20 @@ main {
   text-decoration: underline;
 }
 
+.copy-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+
+.copy-btn:hover {
+  background-color: #0056b3;
+}
+
 .navigation {
   display: flex;
   justify-content: space-between;

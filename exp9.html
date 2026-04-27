@@ -3,24 +3,114 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Experiment 9</title>
+    <title>To implement Decision Tree classifier for diabetes prediction and evaluate its performance</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header>
-      <h1>Experiment 9</h1>
+      <h1>To implement Decision Tree classifier for diabetes prediction and evaluate its performance</h1>
     </header>
     <main>
       <div class="experiment-content">
-        <h2>Introduction</h2>
-        <p>
-          This is the content of Experiment 9. [Placeholder: Extracted text from
-          PDF would go here.]
-        </p>
-        <h3>Methodology</h3>
-        <p>Details about the methodology.</p>
-        <h3>Results</h3>
-        <p>Results of the experiment.</p>
+        <h2>AIM</h2>
+        <p>To implement a Python program to classify patients as diabetic or non-diabetic using the Decision Tree algorithm and evaluate its performance using accuracy, precision, recall, F1-score, confusion matrix, and model visualization.</p>
+        <h3>MODEL DESCRIPTION</h3>
+        <p>Decision Tree Classifier: Decision Tree is a supervised machine learning algorithm used for classification. It splits the dataset into smaller parts based on feature values, forming a tree-like structure. The best feature for splitting is selected using Entropy and Information Gain. Entropy(S) = −∑pilog2pi, Information Gain = Entropy(Parent) − Weighted Entropy(Children). The model is trained using fit() and predictions are made using predict(). Performance is evaluated using accuracy score, precision, recall, F1-score, confusion matrix, and classification report.</p>
+        <h3>ALGORITHM</h3>
+        <ol>
+          <li>Start.</li>
+          <li>Import the required Python libraries for data handling, visualization, and machine learning.</li>
+          <li>Load the dataset.</li>
+          <li>Convert the dataset into a pandas DataFrame for easier analysis.</li>
+          <li>Split the dataset into training data (75%) and testing data (25%).</li>
+          <li>Import the Decision Tree Classifier.</li>
+          <li>Initialize the Decision Tree model (specify criterion such as entropy or gini).</li>
+          <li>Train the model using the training dataset.</li>
+          <li>Visualize the class distribution using a bar chart.</li>
+          <li>Predict the class labels using the testing dataset.</li>
+          <li>Evaluate the model performance using various metrics.</li>
+          <li>Visualize the trained Decision Tree.</li>
+          <li>Display the results and graphs.</li>
+          <li>Stop.</li>
+        </ol>
+        <h3>PROGRAM</h3>
+        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+        <pre><code>import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import os
+import kagglehub
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.metrics import confusion_matrix, classification_report, accuracy_score, f1_score, precision_score, recall_score
+
+path = kagglehub.dataset_download("mathchi/diabetes-data-set")
+csv_path = os.path.join(path, "diabetes.csv")
+df = pd.read_csv(csv_path)
+
+print("First 5 Rows of Dataset:")
+print(df.head())
+plt.figure(figsize=(8, 5))
+counts = df['Outcome'].value_counts()
+categories = ['Non-Diabetic (0)', 'Diabetic (1)']
+values = [counts[0], counts[1]]
+plt.bar(categories, values, color=['skyblue', 'salmon'])
+plt.title('Distribution of Diabetic vs Non-Diabetic')
+plt.xlabel('Diagnosis')
+plt.ylabel('Number of Patients')
+plt.show()
+
+X = df.drop('Outcome', axis=1)
+y = df['Outcome']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+clf = DecisionTreeClassifier(criterion='entropy', max_depth=3, random_state=42)
+clf.fit(X_train, y_train)
+y_pred = clf.predict(X_test)
+print("--- Evaluation Metrics ---")
+print(f"Accuracy: {accuracy_score(y_test, y_pred):.4f}")
+print(f"Precision: {precision_score(y_test, y_pred):.4f}")
+print(f"Recall: {recall_score(y_test, y_pred):.4f}")
+print(f"F1 Score: {f1_score(y_test, y_pred):.4f}")
+
+print("\n--- Detailed Classification Report ---")
+print(classification_report(y_test, y_pred))
+cm = confusion_matrix(y_test, y_pred)
+plt.figure(figsize=(6, 4))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+plt.title('Confusion Matrix')
+plt.show()
+plt.figure(figsize=(20, 10))
+plot_tree(clf, feature_names=X.columns, class_names=['Non-Diabetic', 'Diabetic'], filled=True, rounded=True, fontsize=12)
+plt.title("Decision Tree Visualization")
+plt.show()</code></pre>
+        <h3>SAMPLE INPUT AND OUTPUT</h3>
+        <pre>First 5 Rows of Dataset:
+Pregnancies Glucose BloodPressure SkinThickness Insulin BMI
+0 6 148 72 35 0 33.6
+1 1 85 66 29 0 26.6
+2 8 183 64 0 0 23.3
+3 1 89 66 23 94 28.1
+4 0 137 40 35 168 43.1
+
+--- Evaluation Metrics ---
+Accuracy: 0.7188
+Precision: 0.6471
+Recall: 0.4783
+F1 Score: 0.5500
+
+--- Detailed Classification Report ---
+                precision    recall  f1-score   support
+
+0 0.74 0.85 0.80 123
+1 0.65 0.48 0.55 69
+
+accuracy 0.72 192
+macro avg 0.70 0.67 0.67 192
+weighted avg 0.71 0.72 0.71 192</pre>
+        <h3>RESULT</h3>
+        <p>The Python program for implementing Decision Tree Classification was executed successfully. The model was trained and tested, and its performance was evaluated using accuracy score, precision, recall, F1-score, confusion matrix, and classification report.</p>
       </div>
       <nav class="navigation">
         <a href="exp8.html">Previous</a>

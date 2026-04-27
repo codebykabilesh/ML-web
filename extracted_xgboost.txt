@@ -1,0 +1,89 @@
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from xgboost import XGBRegressor
+import matplotlib.pyplot as plt
+df = pd.read_csv ("car data.csv" )
+print(df.head())
+  Car_Name  Year  Selling_Price  Present_Price  Kms_Driven Fuel_Type  \
+0     ritz  2014           3.35           5.59       27000    Petrol   
+1      sx4  2013           4.75           9.54       43000    Diesel   
+2     ciaz  2017           7.25           9.85        6900    Petrol   
+3  wagon r  2011           2.85           4.15        5200    Petrol   
+4    swift  2014           4.60           6.87       42450    Diesel   
+  Seller_Type Transmission  Owner  
+0      Dealer       Manual      0  
+1      Dealer       Manual      0  
+2      Dealer       Manual      0  
+3      Dealer       Manual      0  
+4      Dealer       Manual      0  
+df.drop("Car_Name" , axis=1, inplace= True)
+df["Car_Age" ] = 2026 - df["Year"]
+df.drop( "Year", axis=1, inplace= True)
+le = LabelEncoder()
+for col in ["Fuel_Type" , "Seller_Type" , "Transmission" ]:
+    df[col] = le.fit_transform(df[col])
+X = df.drop( "Selling_Price" , axis=1)
+y = df["Selling_Price" ]
+X_train, X_test, y_train, y_test = train_test_spli t(
+    X, y, test_size= 0.2, random_state= 42
+)
+▾ XGBRegressor ?i
+XGBRegressor(base_score=None, booster=None, callbacks=None,
+             colsample_bylevel=None, colsample_bynode=None,
+             colsample_bytree=None, device=None, early_stopping_rounds=None,
+             enable_categorical=False, eval_metric=None, feature_types=None,
+             feature_weights=None, gamma=None, grow_policy=None,
+             importance_type=None, interaction_constraints=None,
+             learning_rate=0.05, max_bin=None, max_cat_threshold=None,
+             max_cat_to_onehot=None, max_delta_step=None, max_depth=4,
+             max_leaves=None, min_child_weight=None, missing=nan,
+             monotone_constraints=None, multi_strategy=None, n_estimators=200,
+             n_jobs=None, num_parallel_tree=None, ...)
+model = XGBRegressor(
+    n_estimators= 200,
+    learning_rate= 0.05,
+    max_depth= 4,
+    random_state= 42
+)
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+r2 = r2_score(y_test, y_pred)print("MAE:", mae)
+print("MSE:", mse)
+print("RMSE:", rmse)
+print("R2 Score:" , r2)
+MAE: 0.5976336962864047
+MSE: 1.0332376785228286
+RMSE: 1.016482994704205
+R2 Score: 0.9551460186472486
+importance = model.feature_importances_
+plt.barh(X.columns, importance)
+plt.title( "Feature Importance" )
+plt.show()
+from xgboost import plot_importance
+import matplotlib.pyplot as plt
+plot_importance(model)
+plt.title( "XGBoost Feature Importance" )
+plt.show()
+from xgboost import plot_tree
+import matplotlib.pyplot as plt
+plt.figure(figsize=( 20,10))
+plot_tree(model, num_trees= 0)
+plt.show()/usr/local/lib/python3.12/dist-packages/xgboost/plotting.py:268: FutureWarning: The `num_trees` parameter is deprecated, use `tree_idx` insetad
+  warnings.warn(
+<Figure size 2000x1000 with 0 Axes>
+plt.scatter(y_test, y_pred, color= 'blue', label= 'Predicted' )
+plt.plot([y_test. min(), y_test. max()],
+         [y_test. min(), y_test. max()],
+         color= 'red', linestyle= '--', label= 'Ideal Line' )
+plt.xlabel( "Actual Price" )
+plt.ylabel( "Predicted Price" )
+plt.title( "Actual vs Predicted Prices" )
+plt.legend()
+plt.show()
+Start coding or generate  with AI.

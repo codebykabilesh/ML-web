@@ -3,29 +3,178 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Experiment 10</title>
+    <title>To implement a Python program to classify 20 Newsgroups dataset using the Multilayer Perceptron model and evaluate its performance using accuracy, precision, and recall</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header>
-      <h1>Experiment 10</h1>
+      <h1>To implement a Python program to classify 20 Newsgroups dataset using the Multilayer Perceptron model and evaluate its performance using accuracy, precision, and recall</h1>
     </header>
     <main>
       <div class="experiment-content">
-        <h2>Introduction</h2>
-        <p>
-          This is the content of Experiment 10. [Placeholder: Extracted text
-          from PDF would go here.]
-        </p>
-        <h3>Methodology</h3>
-        <p>Details about the methodology.</p>
-        <h3>Results</h3>
-        <p>Results of the experiment.</p>
+        <h2>AIM</h2>
+        <p>To implement a Python program to classify 20 Newsgroups dataset using the Multilayer Perceptron model and evaluate its performance using accuracy, precision, and recall.</p>
+        <h3>ALGORITHM</h3>
+        <ol>
+          <li>Start.</li>
+          <li>Import the required Python libraries for data handling, text vectorization, machine learning model (MLPClassifier), evaluation metrics, and visualization (matplotlib, seaborn, wordcloud).</li>
+          <li>Load the dataset.</li>
+          <li>Generate Word Cloud.</li>
+          <li>Apply TF-IDF vectorization to the text data to convert it into numerical features.</li>
+          <li>Reduce dimensionality using Principal Component Analysis (PCA) to 2 components and visualize using a scatter plot.</li>
+          <li>Split the TF-IDF vectorized dataset into training data and testing data for model training and evaluation.</li>
+          <li>Initialize and train a Multilayer Perceptron (MLP) classifier using the training data.</li>
+          <li>Use the trained MLP classifier to predict the categories for the test dataset.</li>
+          <li>Evaluate and visualize the model performance using various metrics.</li>
+          <li>Stop.</li>
+        </ol>
+        <h3>PROGRAM</h3>
+        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+        <pre><code>import numpy as np
+from sklearn.datasets import fetch_20newsgroups
+from sklearn.model_selection import train_test_split
+from sklearn.neural_network import MLPClassifier
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics import accuracy_score, precision_score, recall_score, classification_report
+import matplotlib.pyplot as plt
+import seaborn as sns
+from wordcloud import WordCloud
+from sklearn.decomposition import PCA
+
+categories = ['sci.space', 'rec.sport.hockey', 'comp.graphics']
+
+newsgroups = fetch_20newsgroups(subset='all', categories=categories, remove=('headers', 'footers', 'quotes'))
+
+X = newsgroups.data
+
+text = " ".join(X[:200])
+wordcloud = WordCloud(width=800, height=400, background_color='white').generate(text)
+
+plt.figure(figsize=(10, 5))
+plt.imshow(wordcloud, interpolation='bilinear')
+plt.axis("off")
+plt.title("Word Cloud of Dataset")
+plt.show()
+
+y = newsgroups.target
+vectorizer = TfidfVectorizer(stop_words='english', max_features=5000)
+X_vectorized = vectorizer.fit_transform(X)
+print(X_vectorized)
+
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X_vectorized.toarray())
+plt.figure(figsize=(8, 6))
+plt.scatter(X_pca[:, 0], X_pca[:, 1], c=y, cmap='viridis', alpha=0.6)
+plt.xlabel("PC1")
+plt.ylabel("PC2")
+plt.title("PCA Visualization of Newsgroups TF-IDF")
+plt.colorbar()
+plt.show()
+
+X_train, X_test, y_train, y_test = train_test_split(X_vectorized, y, test_size=0.3, random_state=42)
+
+mlp = MLPClassifier(hidden_layer_sizes=(100, 50), activation='relu', solver='adam', max_iter=20, random_state=1)
+mlp.fit(X_train, y_train)
+
+y_pred = mlp.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
+
+precision = precision_score(y_test, y_pred, average='macro')
+print("Precision:", precision)
+
+recall = recall_score(y_test, y_pred, average='macro')
+print("Recall:", recall)
+
+print("\nClassification Report:\n")
+print(classification_report(y_test, y_pred))
+
+from sklearn.metrics import confusion_matrix
+cm = confusion_matrix(y_test, y_pred)
+plt.figure(figsize=(6, 5))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
+plt.title("Confusion Matrix")
+plt.xlabel("Predicted")
+plt.ylabel("Actual")
+plt.show()</code></pre>
+        <h3>SAMPLE INPUT AND OUTPUT</h3>
+        <pre><Compressed Sparse Row sparse matrix of dtype 'float64'
+ with 143276 stored elements and shape (2959, 5000)>
+  Coords  Values
+  (0, 4981)  0.09156822592383755
+  (0, 2893)  0.24117136978146375
+  (0, 3814)  0.7155783189520094
+  (0, 3717)  0.2804758250665697
+  (0, 1467)  0.0820710038821113
+  (0, 3994)  0.07995985116909525
+  (0, 2852)  0.09425084984961164
+  (0, 4924)  0.08934184367190459
+  (0, 2133)  0.09508206436450176
+  (0, 2334)  0.0968459936955467
+  (0, 2100)  0.13313825598709797
+  (0, 3291)  0.10546347169532537
+  (0, 1539)  0.08777161640087844
+  (0, 2833)  0.12349890483042247
+  (0, 2155)  0.10005649405304572
+  (0, 4918)  0.14023791253328485
+  (0, 226)  0.12597136751718288
+  (0, 3603)  0.296520938365009
+  (0, 2223)  0.13313825598709797
+  (0, 2686)  0.08402240368557752
+  (0, 4747)  0.07765063990192411
+  (0, 498)  0.10687149195903066
+  (0, 860)  0.13195868537083746
+  (0, 3689)  0.13570789808613837
+  (0, 1853)  0.12199370515443718
+  : :
+  (2957, 4664) 0.21303968313192512
+  (2957, 2677)  0.13271636134491432
+  (2957, 588)  0.23157760182751982
+  (2957, 2771)  0.3889786041001336
+  (2957, 1615)  0.31607462001852993
+  (2957, 3209)  0.3007883810696037
+  (2957, 1827)  0.3213926422689203
+  (2957, 3853)  0.3047261730936515
+  (2957, 575)  0.2353173471218569
+  (2957, 1658)  0.26688304788289885
+  (2957, 597)  0.32426555143770563
+  (2958, 4422)  0.4045203732678013
+  (2958, 4425)  0.18129888936966138
+  (2958, 4806)  0.5467961522400957
+  (2958, 883)  0.19995744946893249
+  (2958, 212)  0.3443736320095303
+  (2958, 2947)  0.32030001096607064
+  (2958, 4807)  0.16809904213492938
+  (2958, 777)  0.21184961016357137
+  (2958, 1094)  0.16684071420170205
+  (2958, 397)  0.130417527786418
+  (2958, 925)  0.15866790669074368
+  (2958, 1)  0.15771522094012685
+  (2958, 3843)  0.17443542517202557
+  (2958, 314)  0.21184961016357137
+
+Accuracy: 0.9155405405405406
+Precision: 0.9159641073164116
+Recall: 0.9154369553416606
+
+Classification Report:
+
+              precision     recall  f1-score   support
+
+           0       0.92      0.91      0.92       297
+           1       0.95      0.93      0.94       299
+           2       0.87      0.90      0.89       292
+
+    accuracy                           0.92       888
+   macro avg       0.92      0.92      0.92       888
+weighted avg       0.92      0.92      0.92       888</pre>
+        <h3>RESULT</h3>
+        <p>The Python program for implementing Multilayer Perceptron model was executed successfully. The model was trained and tested, and its performance was evaluated using accuracy score, precision and recall.</p>
       </div>
       <nav class="navigation">
         <a href="exp9.html">Previous</a>
         <a href="index.html" class="back-button">Back to Home</a>
-        <span></span>
+        <a href="exp11.html">Next</a>
       </nav>
     </main>
   </body>

@@ -15,3 +15,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+function copyCode(button) {
+  const pre = button.nextElementSibling;
+  const code = pre.querySelector('code');
+  const text = code.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    button.textContent = 'Copied!';
+    setTimeout(() => {
+      button.textContent = 'Copy Code';
+    }, 2000);
+  });
+}
