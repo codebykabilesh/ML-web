@@ -3,17 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>To implement the Breadth-First Search (BFS) algorithm for solving the Water Jug Problem</title>
+    <title>
+      To implement the Breadth-First Search (BFS) algorithm for solving the
+      Water Jug Problem
+    </title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header>
-      <h1>To implement the Breadth-First Search (BFS) algorithm for solving the Water Jug Problem</h1>
+      <h1>
+        To implement the Breadth-First Search (BFS) algorithm for solving the
+        Water Jug Problem
+      </h1>
     </header>
     <main>
       <div class="experiment-content">
         <h2>AIM</h2>
-        <p>To implement Breadth First Search (BFS) and Depth First Search (DFS) to solve the Water Jug problem and reach the target state.</p>
+        <p>
+          To implement Breadth First Search (BFS) and Depth First Search (DFS)
+          to solve the Water Jug problem and reach the target state.
+        </p>
         <h3>ALGORITHM</h3>
         <ol>
           <li>Start the program.</li>
@@ -21,9 +30,15 @@
           <li>Represent state as (x, y) where x and y are water in jugs.</li>
           <li>Initialize initial state (0, 0).</li>
           <li>For BFS → use queue, for DFS → use stack/recursion.</li>
-          <li>Generate all possible next states: Fill A, Fill B, Empty A, Empty B, Pour A → B, Pour B → A.</li>
+          <li>
+            Generate all possible next states: Fill A, Fill B, Empty A, Empty B,
+            Pour A → B, Pour B → A.
+          </li>
           <li>Check if any state equals target → stop.</li>
-          <li>Otherwise, continue until solution is found or all states are explored.</li>
+          <li>
+            Otherwise, continue until solution is found or all states are
+            explored.
+          </li>
         </ol>
         <h3>PROGRAM (BFS)</h3>
         <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
@@ -48,7 +63,8 @@ def bfs(a, b, target):
     return "Not Possible"
 print(bfs(4, 3, 2))</code></pre>
         <h3>OUTPUT (BFS)</h3>
-        <pre>(0, 0)
+        <pre>
+(0, 0)
 (4, 0)
 (0, 3)
 (4, 3)
@@ -58,7 +74,8 @@ print(bfs(4, 3, 2))</code></pre>
 (4, 1)
 (2, 3)
 
-Target Reached</pre>
+Target Reached</pre
+        >
         <h3>PROGRAM (DFS)</h3>
         <pre><code>def dfs(x, y, a, b, target, visited):
     if (x, y) in visited:
@@ -75,7 +92,8 @@ Target Reached</pre>
             dfs(min(a, x+y), max(0, y -(a-x)), a, b, target, visited))
 print(dfs(0, 0, 4, 3, 2, set()))</code></pre>
         <h3>OUTPUT (DFS)</h3>
-        <pre>(0, 0)
+        <pre>
+(0, 0)
 (4, 0)
 (4, 3)
 (0, 3)
@@ -83,9 +101,13 @@ print(dfs(0, 0, 4, 3, 2, set()))</code></pre>
 (3, 3)
 (4, 2)
 
-True</pre>
+True</pre
+        >
         <h3>RESULT</h3>
-        <p>The Water Jug problem was successfully solved using BFS and DFS, and the target state was achieved.</p>
+        <p>
+          The Water Jug problem was successfully solved using BFS and DFS, and
+          the target state was achieved.
+        </p>
       </div>
       <nav class="navigation">
         <a href="exp3.html">Previous</a>

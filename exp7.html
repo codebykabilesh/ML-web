@@ -3,34 +3,71 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>To implement Linear Regression for predicting house prices using the California Housing dataset</title>
+    <title>
+      To implement Linear Regression for predicting house prices using the
+      California Housing dataset
+    </title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header>
-      <h1>To implement Linear Regression for predicting house prices using the California Housing dataset</h1>
+      <h1>
+        To implement Linear Regression for predicting house prices using the
+        California Housing dataset
+      </h1>
     </header>
     <main>
       <div class="experiment-content">
-        <h2>EX.NO: 7A - Implementation of Linear Regression for House Price Prediction with Package</h2>
+        <h2>
+          EX.NO: 7A - Implementation of Linear Regression for House Price
+          Prediction with Package
+        </h2>
         <h3>AIM</h3>
-        <p>To implement a Python program to predict house prices using the Linear Regression algorithm.</p>
+        <p>
+          To implement a Python program to predict house prices using the Linear
+          Regression algorithm.
+        </p>
         <h3>PROGRAM DESCRIPTION</h3>
-        <p>Linear Regression is a supervised learning technique used to model the relationship between an input variable and an output variable. It fits a straight line to the given data by minimizing the error between actual and predicted values. The model is represented by the equation y = b0 + b1x where b0 is the intercept and b1 is the slope. The fit() function is used to train the model by learning the optimal parameters from the training data. The predict() function is then used to estimate output values for new or unseen input data. The model performance is evaluated using Mean Squared Error and R-squared value.</p>
+        <p>
+          Linear Regression is a supervised learning technique used to model the
+          relationship between an input variable and an output variable. It fits
+          a straight line to the given data by minimizing the error between
+          actual and predicted values. The model is represented by the equation
+          y = b0 + b1x where b0 is the intercept and b1 is the slope. The fit()
+          function is used to train the model by learning the optimal parameters
+          from the training data. The predict() function is then used to
+          estimate output values for new or unseen input data. The model
+          performance is evaluated using Mean Squared Error and R-squared value.
+        </p>
         <h3>ALGORITHM</h3>
         <ol>
           <li>Start.</li>
-          <li>Import the required Python libraries for data handling, visualization, and machine learning.</li>
+          <li>
+            Import the required Python libraries for data handling,
+            visualization, and machine learning.
+          </li>
           <li>Load the California Housing dataset.</li>
-          <li>Convert the dataset into a suitable data structure for processing.</li>
-          <li>Separate the dataset into input features (X) and target variable (y) representing house prices.</li>
-          <li>Split the dataset into training data (80%) and testing data (20%).</li>
+          <li>
+            Convert the dataset into a suitable data structure for processing.
+          </li>
+          <li>
+            Separate the dataset into input features (X) and target variable (y)
+            representing house prices.
+          </li>
+          <li>
+            Split the dataset into training data (80%) and testing data (20%).
+          </li>
           <li>Import the Linear Regression algorithm.</li>
           <li>Initialize the Linear Regression model.</li>
           <li>Train the model using the training dataset.</li>
           <li>Predict house prices using the testing dataset.</li>
-          <li>Evaluate the model performance using Mean Squared Error and R-squared score.</li>
-          <li>Compare the actual house prices with the predicted house prices.</li>
+          <li>
+            Evaluate the model performance using Mean Squared Error and
+            R-squared score.
+          </li>
+          <li>
+            Compare the actual house prices with the predicted house prices.
+          </li>
           <li>Visualize the comparison using a scatter plot.</li>
           <li>Display the evaluation results and graph.</li>
           <li>Stop.</li>
@@ -72,33 +109,61 @@ plt.ylabel('Predicted Prices ($100k)')
 plt.title('Actual vs Predicted House Prices')
 plt.show()</code></pre>
         <h3>SAMPLE INPUT AND OUTPUT</h3>
-        <pre>Loading data...
+        <pre>
+Loading data...
 Splitting data into training (80%) and testing (20%)...
 Training Linear Regression model...
 Making predictions on the test set...
 --- Model Evaluation ---
 Mean Squared Error (MSE): 0.00
 R-squared (R2) Score: 1.0000
-Generating visualization...</pre>
+Generating visualization...</pre
+        >
         <h3>RESULT</h3>
-        <p>The Python program for predicting house prices using the Linear Regression algorithm was successfully executed.</p>
+        <p>
+          The Python program for predicting house prices using the Linear
+          Regression algorithm was successfully executed.
+        </p>
 
         <h2>EX.NO: 7B - Implementation of Linear Regression without Package</h2>
         <h3>AIM</h3>
-        <p>To develop a Python program that calculates and predicts the relationship between input and output data by fitting a straight line using Simple Linear Regression and the least squares method, without using any pre-built libraries.</p>
+        <p>
+          To develop a Python program that calculates and predicts the
+          relationship between input and output data by fitting a straight line
+          using Simple Linear Regression and the least squares method, without
+          using any pre-built libraries.
+        </p>
         <h3>PROGRAM DESCRIPTION</h3>
-        <p>Linear Regression is a statistical method used to model the relationship between an independent variable and a dependent variable. It assumes a linear relationship between the variables and fits a straight line that best represents the data. The model is expressed using the equation y = b0 + b1x where b0 is the intercept and b1 is the slope of the line. The values of b0 and b1 are computed using the least squares method to minimize prediction error. This model is widely used for prediction and trend analysis.</p>
+        <p>
+          Linear Regression is a statistical method used to model the
+          relationship between an independent variable and a dependent variable.
+          It assumes a linear relationship between the variables and fits a
+          straight line that best represents the data. The model is expressed
+          using the equation y = b0 + b1x where b0 is the intercept and b1 is
+          the slope of the line. The values of b0 and b1 are computed using the
+          least squares method to minimize prediction error. This model is
+          widely used for prediction and trend analysis.
+        </p>
         <h3>ALGORITHM</h3>
         <ol>
           <li>Start.</li>
-          <li>Generate a set of random input values and corresponding output values using a linear relationship.</li>
+          <li>
+            Generate a set of random input values and corresponding output
+            values using a linear relationship.
+          </li>
           <li>Display the generated data points using a scatter plot.</li>
           <li>Calculate the mean of the input values and output values.</li>
-          <li>Compute the slope (b₁) of the regression line using the least squares formula.</li>
+          <li>
+            Compute the slope (b₁) of the regression line using the least
+            squares formula.
+          </li>
           <li>Compute the intercept (b₀) of the regression line.</li>
           <li>Form the regression equation: y = b₀ + b₁x</li>
           <li>Predict the output values using the regression equation.</li>
-          <li>Evaluate the model performance by calculating Mean Squared Error and R-squared score.</li>
+          <li>
+            Evaluate the model performance by calculating Mean Squared Error and
+            R-squared score.
+          </li>
           <li>Plot the regression line along with the actual data points.</li>
           <li>Display the evaluation results and graph.</li>
           <li>Stop.</li>
@@ -145,10 +210,15 @@ plt.legend()
 plt.grid(True, linestyle='--', alpha=0.6)
 plt.show()</code></pre>
         <h3>SAMPLE INPUT AND OUTPUT</h3>
-        <pre>Mean Squared Error (MSE): 0.08
-R-squared Score (R2): 0.9039</pre>
+        <pre>
+Mean Squared Error (MSE): 0.08
+R-squared Score (R2): 0.9039</pre
+        >
         <h3>RESULT</h3>
-        <p>The Python program to perform Simple Linear Regression using the least squares method was successfully executed.</p>
+        <p>
+          The Python program to perform Simple Linear Regression using the least
+          squares method was successfully executed.
+        </p>
       </div>
       <nav class="navigation">
         <a href="exp6.html">Previous</a>

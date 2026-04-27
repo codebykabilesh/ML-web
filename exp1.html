@@ -1,100 +1,141 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Experiment 1</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <header>
-        <h1>To implement an exhaustive search algorithm for the Tic-Tac-Toe game using Python to explore all possible game states and determine the optimal outcome</h1>
+      <h1>
+        To implement an exhaustive search algorithm for the Tic-Tac-Toe game
+        using Python to explore all possible game states and determine the
+        optimal outcome
+      </h1>
     </header>
     <main>
-        <div class="experiment-content">
-            <h2>AIM</h2>
-            <p>To implement an exhaustive search algorithm for the Tic-Tac-Toe game using Python to explore all possible game states and determine the optimal outcome.</p>
-            <h3>ALGORITHM</h3>
-            <ol>
-                <li>Start.</li>
-                <li>Initialize a 3×3 Tic-Tac-Toe board with empty spaces.</li>
-                <li>Display the board and position indices (0–8).</li>
-                <li>Define a function print_board to display the grid in rows with separators.</li>
-                <li>Define a function check_winner to return 'X' or 'O' if any winning combination matches; else return None.</li>
-                <li>Define a function to check whether the board is full.</li>
-                <li>Implement Exhaustive Search (Minimax): Base Cases: 'X' wins → +1, 'O' wins → −1, Draw → 0. Recursive Cases: Maximizing (AI = X): Try all empty cells → place 'X' → call minimax(False) → undo move → keep maximum score. Minimizing (Human = O): Try all empty cells → place 'O' → call minimax(True) → undo move → keep minimum score. Evaluate all empty cells and choose the move with the highest score.</li>
-                <li>Alternate turns between AI and human until a win or draw occurs.</li>
-                <li>After each move, check for a winner or draw condition.</li>
-                <li>If a winner or draw is found, display the result and stop the game.</li>
-                <li>End.</li>
-            </ol>
-            <h3>SOURCE CODE</h3>
-            <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
-            <pre><code>board = [' ' for _ in range(9)]
+      <div class="experiment-content">
+        <h2>AIM</h2>
+        <p>
+          To implement an exhaustive search algorithm for the Tic-Tac-Toe game
+          using Python to explore all possible game states and determine the
+          optimal outcome.
+        </p>
+        <h3>ALGORITHM</h3>
+        <ol>
+          <li>Start.</li>
+          <li>Initialize a 3×3 Tic-Tac-Toe board with empty spaces.</li>
+          <li>Display the board and position indices (0–8).</li>
+          <li>
+            Define a function print_board to display the grid in rows with
+            separators.
+          </li>
+          <li>
+            Define a function check_winner to return 'X' or 'O' if any winning
+            combination matches; else return None.
+          </li>
+          <li>Define a function to check whether the board is full.</li>
+          <li>
+            Implement Exhaustive Search (Minimax): Base Cases: 'X' wins → +1,
+            'O' wins → −1, Draw → 0. Recursive Cases: Maximizing (AI = X): Try
+            all empty cells → place 'X' → call minimax(False) → undo move → keep
+            maximum score. Minimizing (Human = O): Try all empty cells → place
+            'O' → call minimax(True) → undo move → keep minimum score. Evaluate
+            all empty cells and choose the move with the highest score.
+          </li>
+          <li>
+            Alternate turns between AI and human until a win or draw occurs.
+          </li>
+          <li>After each move, check for a winner or draw condition.</li>
+          <li>
+            If a winner or draw is found, display the result and stop the game.
+          </li>
+          <li>End.</li>
+        </ol>
+        <h3>SOURCE CODE</h3>
+        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+        <pre><code>board = [' '] * 9
 def print_board():
     print()
-    for i in range(3):
+    for i in range(9):
         print("|".join(board[i*3:(i+1)*3]))
-        if i<2:
-            print(" ------- ")
+        if i < 2:
+            print("---------")
     print()
+
 def check_winner(b):
-    wins=[(0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6)]
+    wins = [
+        (0,1,2),(3,4,5),(6,7,8),
+        (0,3,6),(1,4,7),(2,5,8),
+        (0,4,8),(2,4,6)
+    ]
     for a,b1,c in wins:
         if b[a] == b[b1] == b[c] and b[a]!=' ':
             return b[a]
     return None
-def board_full(b):
-    return ' 'not in b
-def exhaustive_search(b ,player):
-    if check_winner(b) or board_full(b):
-        return
+
+def is_full(b):
+    return ' ' not in b
+
+def exhaustive(b,player):
     for i in range(9):
-        if b[i]== ' ':
-            b[i]=player
-            exhaustive_search(b,'0' if player == 'x' else 'x')
-            b[i]= ' '
+        if b[i] == ' ':
+            b[i] = 'x'
+            exhaustive(b,'o' if player=='x' else 'x')
+            b[i] = ' '
+
+
 def ai_move():
     for i in range(9):
         if board[i] == ' ':
-            board[i] = 'X'
-            exhaustive_search(board,'0')
+            temp = board.copy()
+            temp[i] = 'x'
+            exhaustive(temp,'o')
             return i
-print("TIC-TAC-TOE")
-print("AI =X | human=0")
-print("positions:")
-print(" 0 1 2 \n3 4 5\n6 7 8")
+
+
+print("TIC_TAC_TOE GAME")
+print("AI=X|PLAYER=O")
+print("Positions:\n0 1 2\n3 4 5\n6 7 8\n")
 
 print_board()
 
 while True:
-    move = ai_move()
-    board[move] = 'x'
-    print("AI played:",move)
+    m = ai_move()
+    board[m] = 'x'
     print_board()
 
     if check_winner(board):
-        print("winner:",check_winner(board))
+        print("Winner:",check_winner(board))
+        print_board()
         break
-    if board_full(board):
-        print("game draw")
+    if is_full(board):
+        print("Draw")
+        print_board()
         break
-        
-    pos=int(input("your move (0 -8): "))
-    if board[pos] !=' ':
-        print("invalid move. try again.")
+
+    pos=int(input("Enter the pos:"))
+    if board[pos] != ' ':
+        print("Invalid move")
         continue
-    board[pos]='0'
-    print_board()
 
+    board[pos] = 'o'
+    print_board()
     if check_winner(board):
-        print("winner:",check_winner(board))
+        print("Winner:", check_winner(board))
+        print_board()
         break
-    if board_full(board):
-        print("game draw")
-        break</code></pre>
-            <h3>OUTPUT</h3>
-            <pre>TIC-TAC-TOE
+    if is_full(board):
+        print("Draw")
+        print_board()
+        break
+
+
+</code></pre>
+        <h3>OUTPUT</h3>
+        <pre>
+TIC-TAC-TOE
 AI =X | human=0
 positions:
  0 1 2
@@ -152,15 +193,19 @@ X |0|
  -------
 0 |  |
 
-winner: 0</pre>
-            <h3>RESULT</h3>
-            <p>The Tic-Tac-Toe game using exhaustive search was implemented and the output is extracted and verified successfully.</p>
-        </div>
-        <nav class="navigation">
-            <span></span>
-            <a href="index.html" class="back-button">Back to Home</a>
-            <a href="exp2.html">Next</a>
-        </nav>
+winner: 0</pre
+        >
+        <h3>RESULT</h3>
+        <p>
+          The Tic-Tac-Toe game using exhaustive search was implemented and the
+          output is extracted and verified successfully.
+        </p>
+      </div>
+      <nav class="navigation">
+        <span></span>
+        <a href="index.html" class="back-button">Back to Home</a>
+        <a href="exp2.html">Next</a>
+      </nav>
     </main>
-</body>
+  </body>
 </html>

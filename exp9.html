@@ -3,28 +3,59 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>To implement Decision Tree classifier for diabetes prediction and evaluate its performance</title>
+    <title>
+      To implement Decision Tree classifier for diabetes prediction and evaluate
+      its performance
+    </title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header>
-      <h1>To implement Decision Tree classifier for diabetes prediction and evaluate its performance</h1>
+      <h1>
+        To implement Decision Tree classifier for diabetes prediction and
+        evaluate its performance
+      </h1>
     </header>
     <main>
       <div class="experiment-content">
         <h2>AIM</h2>
-        <p>To implement a Python program to classify patients as diabetic or non-diabetic using the Decision Tree algorithm and evaluate its performance using accuracy, precision, recall, F1-score, confusion matrix, and model visualization.</p>
+        <p>
+          To implement a Python program to classify patients as diabetic or
+          non-diabetic using the Decision Tree algorithm and evaluate its
+          performance using accuracy, precision, recall, F1-score, confusion
+          matrix, and model visualization.
+        </p>
         <h3>MODEL DESCRIPTION</h3>
-        <p>Decision Tree Classifier: Decision Tree is a supervised machine learning algorithm used for classification. It splits the dataset into smaller parts based on feature values, forming a tree-like structure. The best feature for splitting is selected using Entropy and Information Gain. Entropy(S) = −∑pilog2pi, Information Gain = Entropy(Parent) − Weighted Entropy(Children). The model is trained using fit() and predictions are made using predict(). Performance is evaluated using accuracy score, precision, recall, F1-score, confusion matrix, and classification report.</p>
+        <p>
+          Decision Tree Classifier: Decision Tree is a supervised machine
+          learning algorithm used for classification. It splits the dataset into
+          smaller parts based on feature values, forming a tree-like structure.
+          The best feature for splitting is selected using Entropy and
+          Information Gain. Entropy(S) = −∑pilog2pi, Information Gain =
+          Entropy(Parent) − Weighted Entropy(Children). The model is trained
+          using fit() and predictions are made using predict(). Performance is
+          evaluated using accuracy score, precision, recall, F1-score, confusion
+          matrix, and classification report.
+        </p>
         <h3>ALGORITHM</h3>
         <ol>
           <li>Start.</li>
-          <li>Import the required Python libraries for data handling, visualization, and machine learning.</li>
+          <li>
+            Import the required Python libraries for data handling,
+            visualization, and machine learning.
+          </li>
           <li>Load the dataset.</li>
-          <li>Convert the dataset into a pandas DataFrame for easier analysis.</li>
-          <li>Split the dataset into training data (75%) and testing data (25%).</li>
+          <li>
+            Convert the dataset into a pandas DataFrame for easier analysis.
+          </li>
+          <li>
+            Split the dataset into training data (75%) and testing data (25%).
+          </li>
           <li>Import the Decision Tree Classifier.</li>
-          <li>Initialize the Decision Tree model (specify criterion such as entropy or gini).</li>
+          <li>
+            Initialize the Decision Tree model (specify criterion such as
+            entropy or gini).
+          </li>
           <li>Train the model using the training dataset.</li>
           <li>Visualize the class distribution using a bar chart.</li>
           <li>Predict the class labels using the testing dataset.</li>
@@ -86,7 +117,8 @@ plot_tree(clf, feature_names=X.columns, class_names=['Non-Diabetic', 'Diabetic']
 plt.title("Decision Tree Visualization")
 plt.show()</code></pre>
         <h3>SAMPLE INPUT AND OUTPUT</h3>
-        <pre>First 5 Rows of Dataset:
+        <pre>
+First 5 Rows of Dataset:
 Pregnancies Glucose BloodPressure SkinThickness Insulin BMI
 0 6 148 72 35 0 33.6
 1 1 85 66 29 0 26.6
@@ -108,9 +140,15 @@ F1 Score: 0.5500
 
 accuracy 0.72 192
 macro avg 0.70 0.67 0.67 192
-weighted avg 0.71 0.72 0.71 192</pre>
+weighted avg 0.71 0.72 0.71 192</pre
+        >
         <h3>RESULT</h3>
-        <p>The Python program for implementing Decision Tree Classification was executed successfully. The model was trained and tested, and its performance was evaluated using accuracy score, precision, recall, F1-score, confusion matrix, and classification report.</p>
+        <p>
+          The Python program for implementing Decision Tree Classification was
+          executed successfully. The model was trained and tested, and its
+          performance was evaluated using accuracy score, precision, recall,
+          F1-score, confusion matrix, and classification report.
+        </p>
       </div>
       <nav class="navigation">
         <a href="exp8.html">Previous</a>
