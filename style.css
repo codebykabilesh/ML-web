@@ -1,0 +1,88 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+header {
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.experiments-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.experiment-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  transition: transform 0.2s;
+}
+
+.experiment-card:hover {
+  transform: translateY(-5px);
+}
+
+.experiment-card h2 {
+  margin-top: 0;
+}
+
+.experiment-card a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.experiment-card a:hover {
+  text-decoration: underline;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.navigation a {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.navigation a:hover {
+  background-color: #0056b3;
+}
+
+.navigation .back-button {
+  background-color: #28a745;
+}
+
+.navigation .back-button:hover {
+  background-color: #218838;
+}
+
+.experiment-content {
+  line-height: 1.6;
+}
+
+.experiment-content h1,
+.experiment-content h2,
+.experiment-content h3 {
+  color: #007bff;
+}
